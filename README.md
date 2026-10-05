@@ -1,75 +1,110 @@
-# React + TypeScript + Vite
+# Intake Record Batch Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript app for capturing intake records, reviewing them in a staging table, and exporting the batch as JSON.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is a small intake-record management interface for collecting person details such as:
 
-## React Compiler
+- Full name
+- Email
+- Phone number
+- Government ID
+- LGA
+- Provider
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The app stores records in browser localStorage, displays them in a batch table, and lets the user delete individual entries or download the full dataset as a JSON file.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Intake form for collecting applicant data
+- Record validation and structured storage
+- Batch list for tracking submitted records
+- Delete individual records
+- Save records to localStorage
+- Export all records as JSON
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Browser localStorage
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
+```text
+ICT_project/
+├── src/
+│   ├── App.tsx
+│   ├── IntakeForm.tsx
+│   ├── StagingTable.tsx
+│   ├── main.tsx
+│   └── index.css
+├── public/
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── .gitignore
+├── README.md
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Before running the project, ensure you have:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 or later
+- npm
 
+## Installation
+
+From the project root, install dependencies:
+
+```bash
+npm install
 ```
+
+## Run the App Locally
+
+```bash
+npm run dev
+```
+
+Then open the local URL shown in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## Production Build
+
+```bash
+npm run build
+```
+
+## Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Usage
+
+1. Fill out the intake form.
+2. Submit the record to add it to the current batch.
+3. Review the records in the staging table.
+4. Remove any record you do not need.
+5. Click the download button to export the batch as `IntakeRecords.json`.
+
+## Notes
+
+- Records are stored in browser `localStorage`, so they remain available after refresh.
+- Each record gets a unique ID generated with `crypto.randomUUID()`.
+- The JSON export contains the full batch of current records.
+
+## License
+
+This project is intended for educational/demo purposes unless otherwise specified.
